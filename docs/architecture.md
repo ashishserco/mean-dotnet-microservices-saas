@@ -1,7 +1,7 @@
 # Architecture Documentation
 
 ## 1. System Overview
-DarwinX is designed as a **Cloud-Native Microservices Application**. It solves the problem of monolithic rigidity by breaking down the domain into loosely coupled, independently deployable services.
+ AI-Powered Employee Benefits & Claims Management SaaS Platform is designed as a **Cloud-Native Microservices Application**. It solves the problem of monolithic rigidity by breaking down the domain into loosely coupled, independently deployable services.
 
 ### Business Problem
 Traditional benefits systems are:
@@ -10,7 +10,7 @@ Traditional benefits systems are:
 - **Opaque**: Employees lack visibility into their benefits.
 
 ### Solution
-DarwinX provides:
+ AI-Powered Employee Benefits & Claims Management SaaS Platform provides:
 - **Scalability**: Services scale independently based on load.
 - **Automation**: AI accelerates claims processing.
 - **Agility**: New features can be deployed without downtime.

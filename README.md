@@ -1,7 +1,7 @@
-# DarwinX – AI-Powered Employee Benefits & Claims Management SaaS Platform
+#  AI-Powered Employee Benefits & Claims Management SaaS Platform
 
 ## 🚀 Executive Summary
-DarwinX is an enterprise-grade, multi-tenant SaaS platform designed to revolutionize employee benefits management. Inspired by industry leaders like Mercer Darwin, it leverages a modern **Microservices Architecture**, **Event-Driven Design**, and **Generative AI** to streamline claims processing and enhance HR operations.
+ AI-Powered Employee Benefits & Claims Management SaaS Platform is an enterprise-grade, multi-tenant SaaS platform designed to revolutionize employee benefits management. Inspired by industry leaders like Mercer Darwin, it leverages a modern **Microservices Architecture**, **Event-Driven Design**, and **Generative AI** to streamline claims processing and enhance HR operations.
 
 This project demonstrates professional-level expertise in the **MEAN Stack (MongoDB, Express, Angular, Node.js)**, **.NET Core**, **Kubernetes**, and **Cloud-Native Architecture**.
 

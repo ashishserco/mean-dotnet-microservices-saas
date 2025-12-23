@@ -59,7 +59,7 @@ The easiest way to run the entire system is via Docker Compose.
 ```bash
 POST /api/users/login
 {
-  "email": "user@darwinx.com",
+  "email": "user@support.com",
   "password": "password"
 }
 ```

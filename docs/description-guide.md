@@ -1,7 +1,7 @@
 #  Explanation Guide
 
 ## 1. How to Explain This Project.
-"I built DarwinX, an enterprise-grade SaaS platform for employee benefits. It's a microservices-based application that uses the MEAN stack for the core system and .NET Core for high-performance transaction processing. I also integrated Generative AI to automate claims analysis, reducing manual workload. It's fully containerized with Docker and deployed on Kubernetes, demonstrating my ability to build scalable, cloud-native solutions."
+"I built  AI-Powered Employee Benefits & Claims Management SaaS Platform, an enterprise-grade SaaS platform for employee benefits. It's a microservices-based application that uses the MEAN stack for the core system and .NET Core for high-performance transaction processing. I also integrated Generative AI to automate claims analysis, reducing manual workload. It's fully containerized with Docker and deployed on Kubernetes, demonstrating my ability to build scalable, cloud-native solutions."
 
 **Keywords to hit**: Microservices, Scalability, AI Integration, Full Stack, Cloud-Native.
 
