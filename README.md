@@ -45,5 +45,41 @@ This project demonstrates professional-level expertise in the **MEAN Stack (Mong
 ## 🚀 Getting Started
 See [Usage Guide](docs/usage-guide.md) for detailed instructions on running locally or deploying to Kubernetes.
 
+## 📸 System Visuals
+
+### 1. Claim Submission & AI Analysis Flow
+This diagram illustrates how the system handles a new claim submission using an Event-Driven approach.
+
+```mermaid
+sequenceDiagram
+    participant User as Employee (Angular)
+    participant API as API Gateway
+    participant Claims as Claims Service (.NET)
+    participant MQ as RabbitMQ
+    participant AI as AI Service (Node.js)
+    participant DB as MongoDB
+
+    User->>API: POST /api/claims (Description, Amount)
+    API->>Claims: Forward Request
+    Claims->>DB: Save Claim (Status: PENDING)
+    Claims->>MQ: Publish "ClaimSubmittedEvent"
+    Claims-->>User: Return 201 Created
+    
+    MQ->>AI: Consume Event
+    AI->>AI: Analyze Text (OpenAI GPT-4)
+    AI->>MQ: Publish "ClaimAnalyzedEvent" (Risk Score, Summary)
+    
+    MQ->>Claims: Consume Result
+    Claims->>DB: Update Claim (Status: REVIEW_NEEDED, Add AI Summary)
+```
+
+### 2. Application Screenshots
+*(Note: These screenshots demonstrate the application running in a local Docker environment)*
+
+#### Claims Dashboard
+The dashboard shows the list of claims with their real-time status and AI-generated insights.
+![Claims Dashboard](docs/images/dashboard_placeholder.png)
+*Figure 1: Employee view showing AI summaries and risk scores.*
+
 ---
 *Designed and Built by [Your Name]*

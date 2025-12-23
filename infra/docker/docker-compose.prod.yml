@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  user-service:
+    image: darwinx/user-service:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/darwinx-users
+    depends_on:
+      - mongo
+
+  benefits-service:
+    image: darwinx/benefits-service:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/darwinx-benefits
+    depends_on:
+      - mongo
+
+  claims-service:
+    image: darwinx/claims-service:latest
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - MongoDbSettings__ConnectionString=mongodb://mongo:27017
+      - RabbitMqSettings__HostName=rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  ai-service:
+    image: darwinx/ai-service:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - RABBITMQ_URL=amqp://rabbitmq
+    depends_on:
+      - rabbitmq
+
+  frontend:
+    image: darwinx/frontend:latest
+    restart: always
+    ports:
+      - "80:80"
+
+  mongo:
+    image: mongo:6.0
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+
+volumes:
+  mongo_data:

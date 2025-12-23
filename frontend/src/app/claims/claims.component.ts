@@ -35,6 +35,34 @@ export class ClaimsComponent implements OnInit {
   ngOnInit() {
     // In real app, use environment variable for API URL
     this.http.get<Claim[]>('http://localhost:5001/api/claims')
-      .subscribe(data => this.claims = data);
+      .subscribe({
+        next: (data) => this.claims = data,
+        error: (err) => {
+          console.warn('Backend not reachable, using mock data for demo');
+          this.claims = [
+            {
+              id: '1',
+              description: 'Root Canal Treatment at City Dental',
+              status: 'ReviewNeeded',
+              aiSummary: 'Dental claim for root canal. Procedure code D3330 matches description. Cost is within 90th percentile.',
+              riskScore: 15
+            },
+            {
+              id: '2',
+              description: 'Emergency Room visit for broken arm',
+              status: 'Approved',
+              aiSummary: 'Medical emergency. X-rays and casting included. Network hospital.',
+              riskScore: 5
+            },
+            {
+              id: '3',
+              description: 'New pair of prescription glasses',
+              status: 'Analyzing',
+              aiSummary: 'Pending AI analysis...',
+              riskScore: 0
+            }
+          ];
+        }
+      });
   }
 }

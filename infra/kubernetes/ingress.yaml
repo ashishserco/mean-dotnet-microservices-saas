@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: darwinx-ingress
+  namespace: darwinx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: darwinx.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+      - path: /api/users
+        pathType: Prefix
+        backend:
+          service:
+            name: user-service
+            port:
+              number: 80
+      - path: /api/benefits
+        pathType: Prefix
+        backend:
+          service:
+            name: benefits-service
+            port:
+              number: 80
+      - path: /api/claims
+        pathType: Prefix
+        backend:
+          service:
+            name: claims-service
+            port:
+              number: 80

@@ -57,12 +57,12 @@ We use **RabbitMQ** to ensure system resilience.
 graph TD
     Client[Angular Client] --> Gateway[API Gateway / Ingress]
     
-    Gateway --> UserSvc[User Service (Node)]
-    Gateway --> BenefitsSvc[Benefits Service (Node)]
-    Gateway --> ClaimsSvc[Claims Service (.NET)]
+    Gateway --> UserSvc["User Service (Node)"]
+    Gateway --> BenefitsSvc["Benefits Service (Node)"]
+    Gateway --> ClaimsSvc["Claims Service (.NET)"]
     
     ClaimsSvc -- Publish Event --> RMQ((RabbitMQ))
-    RMQ -- Subscribe --> AISvc[AI Service (Node)]
+    RMQ -- Subscribe --> AISvc["AI Service (Node)"]
     AISvc -- Publish Result --> RMQ
     RMQ -- Subscribe --> ClaimsSvc
     

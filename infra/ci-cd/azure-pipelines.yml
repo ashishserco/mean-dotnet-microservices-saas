@@ -1,0 +1,35 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    cd services/user-service
+    npm install
+    npm run build
+  displayName: 'Build User Service'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'services/claims-service/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+  displayName: 'Build Claims Service'
+
+- task: Docker@2
+  inputs:
+    command: build
+    dockerfile: 'services/user-service/Dockerfile'
+    tags: |
+      latest
+  displayName: 'Build Docker Image'
