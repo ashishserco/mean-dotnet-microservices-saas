@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Databases & Messaging
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  # Backend Services
+  user-service:
+    build: ./services/user-service
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/darwinx-users
+      - JWT_SECRET=dev_secret
+    depends_on:
+      - mongo
+
+  benefits-service:
+    build: ./services/benefits-service
+    ports:
+      - "3002:3002"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/darwinx-benefits
+      - JWT_SECRET=dev_secret
+    depends_on:
+      - mongo
+
+  ai-service:
+    build: ./services/ai-service
+    ports:
+      - "3003:3003"
+    environment:
+      - RABBITMQ_URL=amqp://rabbitmq
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - rabbitmq
+
+  claims-service:
+    build: ./services/claims-service
+    ports:
+      - "5001:80"
+    environment:
+      - MongoDbSettings__ConnectionString=mongodb://mongo:27017
+      - RabbitMqSettings__HostName=rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  # Frontend
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - user-service
+      - claims-service
+
+volumes:
+  mongo_data:
